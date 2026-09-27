@@ -1,0 +1,21 @@
+{
+  "omapacks.shared": {
+    "label": "Compartido",
+    "title": "Diego y Rafa",
+    "description": "Configuración compartida mediante OmaPacks",
+    "icon": "󰉉",
+    "parent": "root"
+  },
+  "omapacks.shared.about": {
+    "parent": "omapacks.shared",
+    "label": "Acerca del equipo",
+    "description": "Información de este equipo",
+    "action": "omarchy-launch-about"
+  },
+  "omapacks.shared.terminal": {
+    "parent": "omapacks.shared",
+    "label": "Terminal",
+    "description": "Abrir el terminal predeterminado de este equipo",
+    "action": "omarchy-launch-terminal"
+  }
+}
