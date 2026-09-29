@@ -1,0 +1,127 @@
+{
+  "bar": {
+    "centerAnchor": "omarchy.clock",
+    "dynamic": {
+      "contexts": [
+        {
+          "id": "browser",
+          "label": "Navegador",
+          "match": {
+            "appIds": [
+              "zen"
+            ]
+          }
+        }
+      ],
+      "enabled": true,
+      "layouts": {
+        "browser": {
+          "center": [
+            "omapacks.shared.browser-url",
+            "omapacks.shared.indicators"
+          ],
+          "centerAnchor": "omapacks.shared.browser-url",
+          "indicatorExpand": "right",
+          "left": [
+            "omapacks.shared.browser-controls"
+          ],
+          "right": [
+            "omapacks.shared.browser-tools",
+            "omarchy.clock"
+          ]
+        }
+      },
+      "version": 1
+    },
+    "id": "omapacks.shared.bar",
+    "layout": {
+      "center": [
+        {
+          "id": "omapacks.shared.indicators"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omapacks.shared.browser-url",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        }
+      ],
+      "left": [
+        {
+          "id": "omapacks.shared.menu"
+        },
+        {
+          "id": "omapacks.shared.browser-controls",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        },
+        {
+          "id": "omapacks.shared.song-title"
+        },
+        {
+          "id": "omarchy.workspaces"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power",
+          "showPercentage": true
+        },
+        {
+          "id": "omapacks.shared.browser-tools",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": true
+  },
+  "disabledPlugins": [
+    "omarchy.menu"
+  ],
+  "cloneSourceRestores": [
+    "omapacks.shared.menu"
+  ]
+}

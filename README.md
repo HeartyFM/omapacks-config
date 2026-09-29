@@ -4,6 +4,21 @@ Releases completas de configuración para Diego y Rafa, independientes del gesto
 Para instalar OmaPacks, añade el [plugin](https://github.com/HeartyFM/omapacks-plugin)
 desde **Setup → Plugin → Add Plugin** de Omarchy. No pegues este repositorio allí.
 
+## Prueba completa 1.1.2 · gestor mínimo 0.3.3
+
+Fuentes en `packs/desktop-v1.1.2-test`. Conserva el escritorio completo 1.1.0
+(menú, barra, apariencia y defaults) y añade OmaSettings 1.3.0 fijado por commit/hash
+y Super+Shift+S para guardar una captura completa. Desde 1.0.0 también cambian menú
+y barra; el plan identifica los conflictos personales de cada equipo.
+Omarchy 4.0.4, Hyprland 0.56.2, Lua y x86_64. Prerelease de prueba.
+
+[Actualizar y probar con Rafa](docs/RAFA.md). Flujo aprobado por Diego. Suite de
+157 pruebas correcta y actualización 0.2.1 → 0.3.3 comprobada en namespace aislado.
+También se probó Remove → Add y reinstalación conservando el estado.
+Pack 1.0.0 → 1.1.2 → reinstalación → 1.0.0, recuperación y firmas verificadas.
+Paquetes e IPC simulados: no equivale a instalar el pack en el Lenovo ni a comprobar
+el panel OmaSettings o la captura allí. La prueba real sigue pendiente.
+
 ## Primera entrega: escritorio 1.0.0
 
 Fuentes: `packs/desktop-v1.0.0`. Apariencia compartida de Hyprland, submenú Compartido
@@ -27,3 +42,7 @@ Copia el pack completo, cambia versiones/recursos, valida y prueba. Publica fuen
 revisadas en un commit y genera los tres assets firmados con el gestor. El comando
 `omapacks publish` muestra una previsualización; `--yes` publica con autorización.
 No se reemplazan assets ya publicados. Gaming e importación se prepararán después.
+
+Desde el gestor 0.3.3, `manager_min` permite ofrecer una actualización firmada del
+gestor cuando hace falta, con aprobación separada y un plan nuevo para el pack.
+El contenido nunca elige otra URL, clave o instalador. [Contrato](docs/ACTUALIZACION_GESTOR.md).

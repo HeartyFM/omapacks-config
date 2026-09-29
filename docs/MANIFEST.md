@@ -7,8 +7,55 @@ excluidas. `examples/v1/pack.toml` y `examples/v2/pack.toml` son ejemplos ejecut
 Una entrega completa tiene `pack.toml`, `config/` o `modules/` con recursos propios,
 y `NOTES.md`. El empaquetador solo admite archivos declarados y texto propio; no
 copia dependencias externas, archivos personales, enlaces ni todo `~/.config`.
+Desde gestor 0.3.0 admite también bytecode Qt de un shader propio, acotado y
+acompañado por su fuente declarada; no admite otros binarios en `files`.
 No hay ejecución shell genérica desde TOML. Los programas propios se entregan como
 archivos declarados o fuentes externas fijadas y revisadas con constructor explícito.
+
+El candidato 0.3.2 conserva el esquema 1 y la compatibilidad anterior. Añade solo
+`capture_shortcut` y descargas `omarchy-plugin`, que exigen `manager_min="0.3.2"`.
+No abre `input`, `unbind`, comandos ni destinos genéricos. El teclado compartido y
+la activación de temas siguen pendientes en [LIMITES.md](LIMITES.md).
+Las releases anteriores conservan su `manager_min`; siempre se calcula un plan nuevo.
+
+## Actualizar el gestor cuando lo requiere un pack (≥ 0.3.3)
+
+`manager_min` sigue siendo el único campo: no añadir instaladores, claves, URLs o
+acciones de actualización a `downloads`, `operations` ni al reporte editorial.
+Tras verificar firma e integridad del contenido, se puede leer su identidad y
+`manager_min` aunque tenga un esquema futuro. Es solo una vista previa: el motor
+actual no valida ni ejecuta ese esquema. La TUI advierte que aún no se ha calculado
+el plan del pack y permite actualizar el gestor, volver o consultar detalles.
+
+El repositorio del gestor y la clave inicial proceden del instalador configurado,
+no del contenido. Se exige una release estable superior a la instalada y suficiente
+para el requisito, con assets `omapacks-manager.json`, `.json.sig`, `.tar.gz`.
+Índice, repositorio, tag, versión, archivos y permisos se verifican mediante firma
+OpenSSH en el namespace separado `omapacks-manager-v1` y hashes SHA-256. La entrega
+no puede cambiar origen ni confianza. No se usan releases en caché/incompletas.
+
+Antes de reemplazar se revalidan release, gestor, confianza, permisos configurados y
+estado del contenido bajo el mismo bloqueo de operaciones. Se conserva una copia
+del gestor anterior. Tras activar, un proceso nuevo vuelve a verificar la release
+de contenido y calcula otro plan: no se hereda su aprobación. Cancelar la instalación
+del pack después conserva el gestor actualizado. No se actualiza el checkout del
+plugin ni el sistema Omarchy, ni se promete revertir paquetes. Una interrupción
+abrupta queda registrada y requiere comparar las copias antes de recuperar.
+
+Las versiones públicas antiguas no tienen este recorrido; primero se reinstala el
+gestor nuevo por Add Plugin. Ver [RAFA.md](RAFA.md) y [ACTUALIZACION_GESTOR.md](ACTUALIZACION_GESTOR.md).
+
+## Reporte editable y firmado
+
+`NOTES.md` forma parte del índice firmado. En las nuevas releases, sus tres primeras
+secciones deben ser `## Resumen`, `## Apps y plugins` y `## Modificaciones`, en ese
+orden. Se mantienen aunque estén vacías; el lector muestra mensajes explícitos.
+Se pueden añadir secciones después (máximo diez en total, títulos sin repetir).
+La guía y la skill del proyecto definen el estilo editorial. No se admiten escapes
+ANSI del contenido: los colores los elige la TUI. La prosa describe la intención;
+el plan calcula el estado real, permisos, dependencias y conflictos del equipo.
+Las releases antiguas sin ese formato reciben un resumen compatible de tres
+secciones y conservan sus notas originales en Detalles.
 
 ## Campos
 
@@ -17,11 +64,12 @@ archivos declarados o fuentes externas fijadas y revisadas con constructor expl�
 | `schema` | Entero 1. |
 | `id` | Identidad estable del conjunto, por ejemplo `diego-rafa.shared`; no un catálogo. |
 | `version` | Versión semántica del contenido; independiente del gestor. |
-| `manager_min` | Versión mínima del gestor. Nunca se reemplaza el gestor desde el contenido. |
+| `manager_min` | Versión mínima del gestor. Desde 0.3.3, el reporte ofrece una actualización firmada del gestor como requisito previo, con autorización independiente. No admite código/URL de actualización en el pack. |
 | `compatibility` | `architectures` (x86_64/aarch64), opcionalmente `omarchy_min/max`, `hyprland_min/max` y `hyprland_format` (lua/conf/any). Versiones mínimas/máximas inclusivas. |
 | `modules` | Lista con `id`, `version`, `description`, `requires` y `conflicts`. Todos forman parte de la release elegida. Dependencias ausentes/cíclicas y conflictos se rechazan. |
 | `packages` | Dependencias por proveedor (abajo). Una dependencia compartida se declara una vez, en un módulo que otros requieren. |
 | `files` | `module`, `source`, `target`, `scope`, opcionalmente `mode` decimal y `kind`. |
+| `capture_shortcut` | Preferencia exacta de captura descrita abajo; requiere gestor ≥ 0.3.2. |
 | `downloads` | Entregas externas: identidad, versión, arquitectura, URL HTTPS, SHA-256, tamaño, formato y propósito. |
 | `flatpak_remotes` | `name`, `scope`, URL HTTPS de `.flatpakrepo`, `sha256`, `size`. El archivo debe declarar Url HTTPS y GPGKey. La adición se revisa explícitamente. |
 | `operations` | Solo servicios declarados: `kind="service"`, `scope`, `name`, `action` (start/restart/enable), `module`, `purpose`. El administrador autoriza los nombres al configurar el gestor. |
@@ -37,6 +85,7 @@ archivos declarados o fuentes externas fijadas y revisadas con constructor expl�
 - `.config/omapacks-shared/...`
 - `.local/share/omapacks-content/...`
 - `.local/bin/omapacks-NOMBRE`
+- `.config/omarchy/plugins/omapacks.shared.NOMBRE/...` (con manifiesto y entry points declarados)
 
 `scope="system"` admite exclusivamente `etc/omapacks/NOMBRE.conf`, datos de modo
 0600/0644. El nombre además debe estar autorizado por Diego en settings. El helper
@@ -51,6 +100,56 @@ con `Hyprland --verify-config --config`, respaldo antes de activar, reload y
 configerrors después, más comprobación de bindings esenciales. No se convierte Lua
 ↔ conf. No se admiten fragmentos comunes con monitor, input, ejecución o unbind.
 Los fragmentos Lua se revisan como código; el filtro no constituye un aislamiento.
+
+### Captura tipada (gestor ≥ 0.3.2)
+
+```toml
+[capture_shortcut]
+key = "SUPER + SHIFT + S"
+mode = "fullscreen"
+output = "save"
+```
+
+Esta es la única combinación admitida. Requiere compatibilidad Lua y un check
+Hyprland obligatorio. Genera la llamada nativa fija
+`omarchy-capture-screenshot fullscreen save` en el drop-in administrado, tras los
+ajustes de apariencia. El include se coloca al final al crearlo; si ya existe, se
+conserva su posición. No altera bindings.lua ni input.lua. El motor consulta el
+binding activo, muestra cualquier colisión, exige una decisión y revalida la
+identidad antes de aplicar. También detecta la colisión cuando el include no cambia.
+Variantes de submapa, release, longPress o mouse se bloquean para revisión manual.
+Al conservar el atajo, también se conserva el drop-in: la release queda parcial.
+Después de la recarga debe aparecer una sola acción con la descripción generada;
+una configuración posterior que la oculte impide declarar éxito.
+Retirar la preferencia elimina solo el código generado y vuelve a cargar los
+archivos ajenos preservados. No restaura callbacks temporales o cambios externos
+hechos sin archivo. No habilita `unbind`/`bind` en los fragmentos aportados por packs.
+
+`kind="omarchy_shell"` (gestor >= 0.3.0) tiene destino fijo
+`.config/omarchy/shell.json`. Su recurso JSON contiene únicamente `bar`,
+`disabledPlugins=["omarchy.menu"]` y `cloneSourceRestores=[ID_DEL_MENU]`.
+La barra y el menú utilizan plugins propios declarados y widgets nativos.
+Se guarda el valor previo de la barra y cada pertenencia administrada de las listas;
+otros plugins, idle y bloqueo se conservan. El retroceso restaura esos valores.
+Una barra personal distinta requiere aprobar un reemplazo con respaldo.
+
+`kind="omarchy_style"` tiene destino fijo `.config/omarchy/shell.toml` y solo
+admite los tokens definidos de `[bar]` y `[menu]`. Mezcla claves y conserva
+otras secciones/comentarios. Retirar el recurso restaura los valores previos.
+La shell observa escrituras individuales: no se promete una activación atómica.
+Después se verifican archivos, manifiestos nativos y se solicita rescanPlugins.
+
+`kind="qt_shader"` permite exclusivamente `*.frag.qsb` de modo 0644 dentro de un
+plugin `omapacks.shared.NOMBRE`, hasta 128 KiB, junto con su `*.frag` declarado.
+La revisión de publicación debe recompilar la fuente con Qt Shader Baker y
+comparar el resultado. No se ejecutan ni se permiten shaders ejecutables.
+
+`kind="omarchy_menu"` conserva su namespace y admite además la organización
+acotada About/Learn/Games y lanzadores `apps.ID` cuyo comando solo puede ser
+`uwsm-app -- gtk-launch ID.desktop`. No admite `when` ni shell arbitrario.
+El menú compartido filtra estos juegos mediante el catálogo nativo instalado.
+Se conservan las otras entradas y los comentarios; desde 0.3.0 se guarda también
+la entrada previa para restaurarla al retirar un override.
 
 Las configuraciones de otras aplicaciones se entregan como archivos propios. Si
 una aplicación no soporta includes/drop-ins en esos destinos, esta versión no
@@ -68,6 +167,11 @@ completa falsa. No se eliminan paquetes ni datos Wine/personales automáticament
   nueva existente. Transacción agrupada y versiones concretas; no `pacman -Sy`.
   Si la base local indica actualizaciones pendientes, se pide la ruta oficial
   `omarchy update` y después otro plan. Sincronicidad con mirrors/red no se presupone.
+  Desde 0.3.1 un fallo de consulta no equivale a ausencia. El nombre pedido debe
+  identificar un paquete concreto; si la consulta devuelve otro nombre, se bloquea
+  para revisar la receta. No existe equivalencia global `mime-types=mailcap`.
+  El fixture de la receta 1.1.0 registra Provides/Conflicts/Replaces reales y esa
+  receta declara mailcap explícitamente, incluidas las dependencias de Zen.
 - **AUR:** `provider="aur"`, nombre/pkgbase simple, versión mínima, `commit` Git
   de 40 caracteres, texto `review`, `build_dependencies` declaradas como paquetes.
   Se muestra PKGBUILD y auxiliares completos y se registran revisión/hashes.
@@ -80,12 +184,28 @@ completa falsa. No se eliminan paquetes ni datos Wine/personales automáticament
   En instalación inicial descarga sin desplegar, comprueba el commit local y
   despliega sin volver a descargar. Las actualizaciones fijan `--commit`.
   Mantiene visibles las confirmaciones nativas de runtimes y permisos adicionales.
-- **Externos:** `format` appimage, tar, arch o source-tar. `id`, `version`,
+- **Externos:** `format` appimage, tar, arch, source-tar u omarchy-plugin. `id`, `version`,
   `architecture`, `url`, `sha256`, `size`, `purpose`, `module`; `target` salvo
   paquetes Arch. Descarga máxima 128 MiB. AppImage requiere cabecera reconocida;
   tar rechaza enlaces, traversal, entradas duplicadas y expansión excesiva.
   Paquetes Arch se inspeccionan con pacman y se instalan con `pacman -U`.
   No conversión automática deb/rpm.
+- **Plugin nativo externo (≥ 0.3.2):** `format="omarchy-plugin"`, los campos de
+  descarga y `plugin_id`, `revision` de 40 caracteres. Solo admite archivo codeload
+  GitHub fijado a esa revisión y destino exacto `.config/omarchy/plugins/<plugin_id>`.
+  Rechaza IDs reservados, enlaces, raíces inesperadas, identidad/versión distintas
+  y plugins sin servicio. No ejecuta scripts instaladores. Valida el manifiesto con
+  el helper nativo después de aprobar código y antes de escribir. Conserva licencia;
+  omite metadatos ocultos del repositorio, AGENTS/CLAUDE y preview.png.
+  Administra archivos individualmente y solo la entrada `plugins` de ese ID y su
+  pertenencia en `disabledPlugins`; no coloca widgets ni sustituye la barra.
+  Detecta instalaciones ajenas o el mismo ID en otra carpeta, y las bloquea sin
+  adopción automática. Revalida inventario e identidad; evita activar mezclas
+  parciales de archivos conservados. Después solicita rescanPlugins y comprueba
+  `enabled` en la lista real de la shell. Esto no certifica funcionamiento gráfico.
+  El código QML corre con permisos del usuario, sin aislamiento. Al retirar restaura
+  las pertenencias previas y elimina archivos propios sin cambios personales;
+  datos/efectos que produzca el plugin quedan fuera de la restauración del gestor.
 - **Herramientas propias desde fuente:** source-tar añade `revision` Git fija,
   `build` make/cargo, `check` ruta de la salida compilada y la herramienta de
   compilación como paquete declarado. La TUI muestra las fuentes y pide aprobación

@@ -1,6 +1,6 @@
 # Crear y publicar configuraciones OmaPacks con agentes
 
-Lee primero `AGENTS.md`, `docs/MANIFEST.md` y las notas/evidencia de la release anterior. Trabaja en ciclos:
+Lee primero `AGENTS.md`, `CURRENT_STATE.md` y `docs/MANIFEST.md`. Trabaja en ciclos:
 inspeccionar → implementar → probar → corregir. No declares resultados sin evidencia.
 
 ## Contrato del proyecto
@@ -19,9 +19,10 @@ inspeccionar → implementar → probar → corregir. No declares resultados sin
 
 ## Crear un candidato
 
-1. Copia `packs/desktop-v1.0.0` a un nuevo directorio de `packs/`. Revisa el
+1. Parte de la última release completa y de los cambios locales aún inéditos; no
+   retrocedas automáticamente a 1.0.0. Crea un nuevo directorio en `content/`. Revisa el
    manifiesto, recursos y notas. Solo se empaquetan archivos propios declarados.
-   No incluir fixtures ni artefactos de pruebas en este repositorio.
+   `examples/v1` y `examples/v2` son fixtures, no publicaciones reales.
 2. Inspecciona las versiones y archivos reales del equipo. Para Omarchy consulta
    las skills `omarchy` y `omarchy-visual-design`, sus referencias y los scripts
    instalados. Lee `/usr/share/omarchy`; nunca lo edites para personalizar.
@@ -30,14 +31,60 @@ inspeccionar → implementar → probar → corregir. No declares resultados sin
    escalado, GPU, cursor de hardware, energía, discos, teclado personal ni kernels.
    La sintaxis Lua es código revisable y no está aislada durante una instalación
    real. El motor valida tras aprobación, preserva accesos esenciales y recarga al final.
+   La preferencia explícita de idiomas/variantes/alternancia XKB es un requisito
+   distinto del hardware, pero todavía no está soportada por el esquema. Consulta
+   `FUTURO_PACK.md`: no resolverla copiando input.lua, bindings.lua o abriendo todo
+   input/unbind. El futuro pack deberá conservar todos los recursos de la release
+   completa anterior y fijar `manager_min` cuando exista el adaptador probado.
 4. Menú: `omarchy_menu` solo admite entradas `omapacks.shared.*`, grupos y acciones
    tipadas. El recurso JSON se combina con la extensión local; no exportar el menú
    completo ni rutas de Diego. Defaults: `xdg_defaults` referencia un JSON de
    asociaciones MIME, terminal y editor admitidos. Declarar también sus paquetes.
    No copiar historiales, perfiles, autenticación, cookies, claves, partidas o ROMs.
-5. Escribe `NOTES.md` pensando en Rafa: qué cambia, aplicaciones incluidas,
-   compatibilidad, permisos, reinicios y límites. Se muestra directamente al
-   seleccionar la release, encima de Instalar/Retroceder.
+5. Escribe `NOTES.md` pensando en Rafa y siguiendo el contrato editorial de abajo.
+   El reporte abre directamente al seleccionar la release. Instalar aprueba el plan
+   mostrado; se conservan las decisiones nuevas de conflictos, permisos y código.
+
+## Reporte editorial: instrucciones para la IA
+
+La [skill local](../.agents/skills/crear-packs-omapacks/SKILL.md) incluye este contrato.
+La IA puede redactar y editar `NOTES.md`; Diego revisa su contenido. La lista muestra
+el apartado Resumen de las notas de publicación, hasta dos líneas; publica el mismo
+NOTES.md para que coincida con el reporte firmado. Esa previsualización informativa
+no autoriza operaciones ni sustituye la verificación al abrir. Se firma como
+parte del pack. No escribir el reporte en código Python ni derivarlo de notas GitHub
+sin autenticar. Las tres primeras secciones son obligatorias y siempre visibles
+mediante desplazamiento, incluso si alguna no tiene novedades:
+
+```markdown
+## Resumen
+Un párrafo breve: qué incluye este paquete y para qué sirve.
+
+## Apps y plugins
+- Nombre: propósito y forma de acceso.
+
+## Modificaciones
+- Omarchy · Interfaz o paneles: cambio concreto.
+- Hyprland · Capturas o navegación: cambio concreto.
+```
+
+Sin elementos: «No se añadieron nuevos elementos». Sin modificaciones:
+«No se declararon modificaciones». No omitir secciones vacías ni inventar cambios.
+Las categorías son humanas y se usan donde correspondan; no es una lista obligatoria
+que haya que rellenar. Más secciones solo si aportan información, después de las tres.
+El pack de prueba OmaSettings/capturas no necesita ninguna adicional.
+
+Usa párrafos breves, listas y español claro. No añadas ANSI o colores al archivo:
+la TUI remarca los títulos con el color del logo del tema y mantiene el logo en
+cada pantalla (marca compacta cuando no cabe). El reporte describe la intención de
+la release completa. Los cambios reales en este equipo, dependencias pendientes,
+permisos y advertencias se calculan debajo; nunca afirmarlos por la prosa.
+
+Para esta prueba: OmaSettings fijado a commit/hash y `capture_shortcut` para
+Super+Shift+S, pantalla completa y guardado. Xbox Controllers queda excluido por
+instrucción de Diego. Ambos adaptadores necesitan gestor 0.3.2; no usar Lua arbitrario
+para bindings ni copiar shell.json para activar el plugin. Consulta el contrato
+normativo. El futuro teclado XKB y temas no quedan habilitados por esta ampliación.
 
 ## Dependencias y futuros packs
 
@@ -65,11 +112,11 @@ no ocultarlo con un script shell ni afirmar que el pack instala el agente person
 
 ## Validar y probar
 
-Desde el checkout de desarrollo del gestor, sustituyendo RUTA por el candidato de este repo. Si solo tienes el gestor instalado, usa `omapacks validate RUTA`; las pruebas de desarrollo no vienen en el plugin:
+Desde la raíz del gestor, sustituyendo RUTA por el candidato:
 
 ```sh
 bin/omapacks validate RUTA
-python3 -m unittest discover -s tests -v
+python3 tools/isolated_checks.py suite
 ```
 
 Probar instalación limpia, actualización, regreso, reinstalación, conflictos,
@@ -77,7 +124,9 @@ retirada de recursos, firma/hash inválidos y fallo de comprobación. Usa claves
 efímeras para fixtures y elimínalas al terminar. `tools/desktop_probe.py` comprueba
 la sintaxis del candidato 1.0.0 y defaults con comandos reales en un namespace
 rootless. `tools/plugin_qml_probe.py` carga QML real con bootstrap simulado.
-`tools/visual_probe.py journey`, `small`, `light` prueban la TUI en su propia ventana.
+`python3 -m tools.report_probe probe`, `small`, `light` prueban el recorrido
+vigente en una ventana propia, con operaciones de fixtures dentro de bwrap.
+`open` deja la demo para revisión humana; la automatización no implica aprobación.
 
 Un HOME temporal **no aísla** pacman, servicios o Hyprland. No probar paquetes/root
 sobre el hogar personal: namespace/VM apropiado o aprobación concreta. Registrar
@@ -108,7 +157,7 @@ el borrador. Nunca crear claves permanentes, credenciales, nuevos repos o cambia
 visibilidad sin autorización aplicable. Nunca guardar o distribuir el token de Diego.
 
 Finalmente consultar y descargar **esa release real** con el cliente OmaPacks,
-verificar firma/identidad/assets y registrar URL y evidencia de la publicación.
+verificar firma/identidad/assets y actualizar `CURRENT_STATE.md` con URL y evidencia.
 Un archivo local o servidor simulado no es una release publicada.
 
 ## Entrega
@@ -120,3 +169,16 @@ trabajo local autorizado pendiente solo por no tener permiso para publicar.
 
 El grupo raíz `omapacks.shared` declara `parent = "root"` explícitamente.
 Omarchy infiere el padre de IDs con puntos; omitirlo dejaría el grupo bajo un padre inexistente.
+
+## Packs que requieren un gestor más nuevo
+
+Desde OmaPacks 0.3.3, declara únicamente `manager_min` con la versión mínima real.
+El reporte muestra automáticamente el requisito y la actualización disponible del
+gestor desde su origen confiable. Explica en las notas si el pack necesita una función
+nueva; no escribas que ya está instalado ni fuerces la actualización desde un recurso.
+La IA no debe incluir scripts, URLs de gestores, claves nuevas o comandos shell para
+actualizar OmaPacks. El gestor verifica una entrega propia firmada, pide aprobación
+y vuelve a calcular el plan de contenido en un proceso nuevo. Si no existe una
+versión estable suficiente, la instalación queda bloqueada sin aplicar el pack.
+La entrega del gestor requerido debe publicarse y verificarse antes que el contenido.
+Las instalaciones anteriores a 0.3.3 se actualizan primero con el plugin configurado.
