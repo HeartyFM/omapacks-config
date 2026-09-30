@@ -169,6 +169,20 @@ completa falsa. No se eliminan paquetes ni datos Wine/personales automáticament
 
 ## Proveedores
 
+La corrección candidata 0.4.2 añade una política acotada para `steam` de Arch.
+Si Steam necesita instalación/actualización y faltan `vulkan-driver` o
+`lib32-vulkan-driver`, consulta las GPU de clase PCI Display mediante los atributos
+de solo lectura `class`/`vendor` de sysfs. Para AMD/Intel añade al plan los paquetes
+concretos `vulkan-radeon`/`vulkan-intel`, sus variantes `lib32-`, `mesa` y `lib32-mesa`.
+Conserva bibliotecas instaladas suficientes. El plan muestra nombres, versiones y
+motivo; vuelve a resolverlo antes de aplicar. No modifica parámetros de GPU ni kernel.
+Con ambos proveedores virtuales ya satisfechos conserva la elección local. Con GPU
+desconocida o solo NVIDIA y dependencias Vulkan ausentes se detiene con diagnóstico;
+no elige un proveedor arbitrario ni automatiza NVIDIA. Esta comprobación de paquetes
+no demuestra aceleración, Vulkan funcional ni compatibilidad de una GPU antigua.
+Los packs con Steam que necesiten esta corrección deben usar `manager_min="0.4.2"`.
+Su publicación está pendiente; no se deben publicar antes que el gestor compatible.
+
 - **Arch:** `provider="arch"`, `name`, `version` mínima. Se consulta instalado,
   repositorios habilitados y resolución transitiva. Se mantiene una versión más
   nueva existente. Transacción agrupada y versiones concretas; no `pacman -Sy`.
@@ -279,7 +293,7 @@ Omarchy infiere el padre de IDs con puntos; omitirlo dejaría el grupo bajo un p
 # Extensiones 0.4.0: base de Rafa
 
 El esquema sigue siendo 1; estos campos requieren `manager_min = "0.4.0"`.
-Referencia completa comprobable: `packs/desktop-gaming-v1.2.0/pack.toml`.
+Referencia completa comprobable: `content/desktop-gaming-v1.2.0/pack.toml`.
 
 - `compatibility.omarchy_package_min = "4.0.4-1.1"` compara versión y sufijo numérico
   completo de `omarchy version`. Una versión ausente/inferior bloquea antes de los

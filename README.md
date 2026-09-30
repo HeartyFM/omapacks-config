@@ -4,6 +4,17 @@ Releases completas de configuración para Diego y Rafa, independientes del gesto
 Para instalar OmaPacks, añade el [plugin](https://github.com/HeartyFM/omapacks-plugin)
 desde **Setup → Plugin → Add Plugin** de Omarchy. No pegues este repositorio allí.
 
+## Base 1.2.3 · gestor mínimo 0.4.2 · Prueba
+
+Corrige la selección de proveedores Vulkan al instalar Steam. El gestor consulta
+las bibliotecas y GPU del destinatario, completa Mesa/Vulkan para Radeon o Intel
+en un plan revisable y conserva el bloqueo de NVIDIA. No copia la GPU de Diego
+ni modifica kernel, arranque o Secure Boot. Mantiene todo el contenido de 1.2.2
+y no vuelve a imponer un mínimo de Omarchy igual al de Diego.
+[Guía para Rafa](docs/RAFA.md). Assets preparados localmente; comprobar en Releases
+que Diego haya publicado antes de seguir la guía. Pruebas locales y resolución
+real con pacman completadas; la aplicación de paquetes y el Lenovo quedan pendientes.
+
 ## Base 1.2.2 · gestor mínimo 0.4.0 · Prueba
 
 Conserva el contenido completo de 1.2.0 y elimina únicamente el requisito de que

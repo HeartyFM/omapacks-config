@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "omapacks.shared.browser-url",
+  "name": "Dirección del navegador",
+  "version": "1.0.0",
+  "author": "Diego",
+  "description": "Dirección del navegador para la topbar dinámica",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "Dirección del navegador",
+    "defaultSection": "center"
+  }
+}

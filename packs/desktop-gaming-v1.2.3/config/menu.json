@@ -1,0 +1,71 @@
+{
+  "omapacks.shared": {
+    "label": "Compartido",
+    "title": "Diego y Rafa",
+    "description": "Configuración compartida mediante OmaPacks",
+    "icon": "󰉉",
+    "parent": "root"
+  },
+  "omapacks.shared.about": {
+    "parent": "omapacks.shared",
+    "label": "Acerca del equipo",
+    "description": "Información de este equipo",
+    "action": "omarchy-launch-about"
+  },
+  "omapacks.shared.terminal": {
+    "parent": "omapacks.shared",
+    "label": "Terminal",
+    "description": "Abrir el terminal predeterminado de este equipo",
+    "action": "omarchy-launch-terminal"
+  },
+  "about": {
+    "icon": "",
+    "label": "About",
+    "action": ""
+  },
+  "learn": {
+    "parent": "about",
+    "icon": "󰧑",
+    "label": "Learn"
+  },
+  "about.system": {
+    "icon": "",
+    "label": "About of system",
+    "action": "omarchy-launch-about"
+  },
+  "games": {
+    "icon": "",
+    "label": "Games",
+    "title": "Games",
+    "description": "Juegos y modpacks",
+    "after": "apps"
+  },
+  "apps.steam": {
+    "parent": "games",
+    "icon": "",
+    "label": "Steam",
+    "action": "uwsm-app -- gtk-launch steam.desktop"
+  },
+  "apps.org.vinegarhq.Sober": {
+    "parent": "games",
+    "icon": "",
+    "label": "Roblox",
+    "aliases": [
+      "Sober"
+    ],
+    "description": "Roblox mediante Sober",
+    "action": "uwsm-app -- gtk-launch org.vinegarhq.Sober.desktop"
+  },
+  "apps.minecraft-launcher": {
+    "parent": "games",
+    "icon": "󰍳",
+    "label": "Minecraft Launcher",
+    "action": "uwsm-app -- gtk-launch minecraft-launcher.desktop"
+  },
+  "apps.curseforge": {
+    "parent": "games",
+    "icon": "",
+    "label": "CurseForge",
+    "action": "uwsm-app -- gtk-launch curseforge.desktop"
+  }
+}

@@ -1,0 +1,142 @@
+/* Omarchy Glass: one translucent backdrop, solid artwork and text. */
+:root {
+  --om-glass: rgba(0, 0, 0, .30);
+  --om-surface: rgba(255, 255, 255, .045);
+  --om-hover: rgba(255, 255, 255, .09);
+  --om-border: rgba(255, 255, 255, .14);
+  --om-font: "JetBrainsMono Nerd Font", monospace;
+  --encore-body-font-stack: var(--om-font) !important;
+  --encore-title-font-stack: var(--om-font) !important;
+  --encore-variable-font-stack: var(--om-font) !important;
+  --encore-bodyMono-font-stack: var(--om-font) !important;
+}
+html { background: transparent !important; }
+body { background: var(--om-glass) !important; }
+body, button, input, select, textarea, [data-encore-id="text"] {
+  font-family: var(--om-font) !important;
+}
+#main, .Root, .Root__top-container, .Root__globalNav,
+.Root__main-view, .Root__nav-bar, .Root__right-sidebar,
+.Root__now-playing-bar, .main-view-container,
+.main-view-container__scroll-node, .main-nowPlayingBar-container {
+  background-color: transparent !important;
+}
+.Root__main-view, .Root__nav-bar, .Root__right-sidebar {
+  border-radius: 0 !important;
+  box-shadow: inset 0 0 0 1px var(--om-border);
+}
+.Root__globalNav, .Root__now-playing-bar {
+  border-radius: 0 !important;
+}
+.main-nowPlayingView-section {
+  background-color: var(--om-surface) !important;
+}
+.main-card-card { background-color: var(--om-surface) !important; }
+.main-card-card:hover { background-color: var(--om-hover) !important; }
+.main-contextMenu-menu, [role="dialog"] {
+  background-color: rgba(20, 20, 20, .96) !important;
+  border: 1px solid var(--om-border);
+}
+.main-entityHeader-backgroundColor,
+.main-actionBarBackground-background { opacity: .32 !important; }
+.main-entityHeader-overlay { opacity: .30 !important; }
+.main-trackList-trackListRow:hover { background: var(--om-hover) !important; }
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: rgba(var(--spice-rgb-button), .24) !important;
+}
+button:focus-visible, a:focus-visible, input:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--spice-button) !important;
+  outline-offset: -2px;
+}
+/* Artwork stays opaque and unfiltered; only its frame becomes square. */
+
+/* Keep palette colors opaque: Spotify also uses them for inverse text/icons. */
+.encore-dark-theme {
+  --background-base: transparent !important;
+  --background-highlight: rgba(255, 255, 255, .09) !important;
+  --background-press: rgba(255, 255, 255, .13) !important;
+  --background-elevated-base: rgba(20, 20, 20, .32) !important;
+  --background-elevated-highlight: rgba(255, 255, 255, .10) !important;
+  --background-elevated-press: rgba(255, 255, 255, .14) !important;
+  --background-tinted-base: rgba(255, 255, 255, .05) !important;
+  --background-tinted-highlight: rgba(255, 255, 255, .09) !important;
+  --background-tinted-press: rgba(255, 255, 255, .13) !important;
+}
+
+/* Preserve Spotify's contextual hue while fading the background layer only. */
+.main-home-homeHeader {
+  opacity: .40 !important;
+  -webkit-mask-image: linear-gradient(#000 0%, transparent 100%);
+  mask-image: linear-gradient(#000 0%, transparent 100%);
+}
+.main-actionBarBackground-background {
+  -webkit-mask-image: linear-gradient(#000, transparent);
+  mask-image: linear-gradient(#000, transparent);
+}
+/* Give the wider monospace search field its own available width. */
+@media (min-width: 800px) {
+  .main-globalNav-searchContainer { min-width: 0 !important; }
+  .main-globalNav-searchInputContainer { width: 100% !important; min-width: 0; }
+  .main-globalNav-searchInputContainer > :last-child {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .main-globalNav-searchInputContainer .main-topBar-searchBar {
+    width: 100% !important;
+    min-width: 0 !important;
+    color: var(--spice-text) !important;
+    padding-inline-end: 64px !important;
+  }
+  .main-globalNav-searchInputContainer .main-topBar-searchBar::placeholder {
+    color: var(--spice-subtext) !important;
+  }
+}
+/* Small inverse labels and form indicators need an opaque ink color. */
+.x-explicit-label { color: #000 !important; }
+input + label, [role="switch"], [role="checkbox"],
+[class*="form-toggle__indicator"],
+[class*="form-radio__indicator"],
+[class*="form-checkbox__indicator"] {
+  --background-base: #000 !important;
+}
+/* Brighten accent text, keeping the original hue on filled controls. */
+.encore-dark-theme {
+  --text-positive: var(--om-accent-text) !important;
+  --text-bright-accent: var(--om-accent-text) !important;
+}
+
+/* Square frames and controls throughout Spotify, including generated UI. */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+/* Native lyrics supply this color per song. Tint the paint, never the text. */
+.lyrics-lyrics-background {
+  --om-song-color: var(--lyrics-color-background, var(--spice-button));
+  --om-song-edge: color-mix(in srgb, var(--om-song-color) 60%, white 40%);
+  background-color: color-mix(in srgb, var(--om-song-color) 12%, transparent) !important;
+  background-image: linear-gradient(90deg,
+    color-mix(in srgb, var(--om-song-color) 38%, transparent),
+    transparent 20%, transparent 80%,
+    color-mix(in srgb, var(--om-song-color) 38%, transparent)) !important;
+  box-shadow: inset 0 0 0 1px var(--om-song-edge),
+              inset 0 0 48px color-mix(in srgb, var(--om-song-color) 24%, transparent);
+}
+/* These colors remain solid even over the desktop's bright areas. */
+.lyrics-lyrics-contentContainer {
+  --lyrics-color-active: #fff !important;
+  --lyrics-color-inactive: color-mix(in srgb,
+    var(--lyrics-color-background, var(--spice-button)) 18%, white 82%) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .70);
+}
+.lyrics-lyricsContent-lyric.lyrics-lyricsContent-previous {
+  opacity: 1 !important;
+  color: color-mix(in srgb,
+    var(--lyrics-color-background, var(--spice-button)) 30%, white 70%) !important;
+}
+.lyrics-lyrics-contentContainer .lyrics-lyrics-contentWrapper::after {
+  background: linear-gradient(to bottom, transparent,
+    color-mix(in srgb, var(--lyrics-color-background, var(--spice-button)) 16%, transparent)) !important;
+  pointer-events: none;
+}
