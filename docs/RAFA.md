@@ -1,8 +1,8 @@
 # Rafa: actualizar OmaPacks y recibir la base compartida
 
-Objetivo: **gestor 0.4.0 / configuración 1.2.0**. Esta entrega es local hasta que
-Diego confirme su publicación verificada. La versión pública comprobada el
-30-09-2026 sigue siendo gestor 0.3.3 / configuración de prueba 1.1.2.
+Disponibles y verificadas el 30-09-2026: **gestor 0.4.0 estable / configuración
+1.2.0 Prueba**. Publicación y descarga anónima con firma comprobadas. La prueba de
+aplicaciones y del Lenovo se hará contigo; no necesita modificar código.
 
 1. **Comprobar juntos el punto de partida.** Ejecuta `omarchy version` y
    `~/.local/bin/omapacks --version`. El pack exige **Omarchy 4.0.4-1.1 o superior**,
@@ -12,7 +12,7 @@ Diego confirme su publicación verificada. La versión pública comprobada el
    versiones, origen y operaciones pendientes. No modifica nada ni necesita el
    proyecto de desarrollo. Con pendientes, revisad la recuperación antes de seguir.
 
-2. **Actualizar el gestor cuando Diego avise.** Si ya tienes 0.3.3, abre
+2. **Actualizar el gestor.** Si ya tienes 0.3.3, abre
    **Update → Configuración compartida**, selecciona **v1.2.0 · Prueba** y acepta
    **Actualizar gestor** cuando el reporte lo solicite. Descarga una entrega estable
    firmada de `HeartyFM/omapacks-plugin` y después vuelve a revisar el pack.

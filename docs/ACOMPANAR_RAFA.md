@@ -1,7 +1,7 @@
 # Acompañar a Rafa: gestor 0.4.0 y base 1.2.0
 
-Pendiente de publicación autorizada. No iniciar la instalación esperando encontrar
-versiones que aún solo existen localmente. La guía de Rafa está en `RAFA.md`.
+Publicadas con autorización de Diego y verificadas el 30-09-2026. La guía de Rafa
+está en `RAFA.md`; solo falta coordinar la prueba real del Lenovo.
 
 Entrega local: `artifacts/desktop-gaming-2026-09-30/delivery/`. Incluye el plugin
 configurado para Add Plugin, gestor independiente, contenido firmado y carpeta
