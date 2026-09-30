@@ -1,28 +1,26 @@
-# Acompañar a Rafa: gestor 0.4.0 y base 1.2.2
+# Acompañar a Rafa: gestor 0.4.2 y base 1.2.3
 
-La base 1.2.2 elimina únicamente el mínimo de versión Omarchy y utiliza el gestor 0.4.0 ya publicado.
-Comprobar la disponibilidad de la release 1.2.2 y sus firmas antes de instalar.
-La base pública 1.2.0 permanece intacta con su requisito anterior. Guía: `RAFA.md`.
+Ambas releases están publicadas y verificadas. La base conserva el contenido de
+1.2.2 y pide gestor 0.4.2 para corregir la selección de Vulkan al instalar Steam.
+No exige la versión de Omarchy de Diego. Usar [la guía de Rafa](RAFA.md).
 
-Gestor local: `artifacts/desktop-gaming-2026-09-30/delivery/`. Incluye el plugin
-configurado para Add Plugin, gestor independiente, contenido firmado y carpeta
-`rafa/` con la guía anterior y `Comprobar-OmaPacks.py`. El contenido nuevo está en
-`artifacts/omarchy-version-policy-2026-09-30/release-v1.2.2/`; usar la guía actual
-`docs/RAFA.md`. El comprobador es Python estándar,
-de solo lectura, y funciona aunque el gestor anterior no conozca `support-report`.
-Su salida excluye diarios completos, perfiles, rutas personales y secretos.
+Rafa informó Mesa 1:26.2.2-1 sin Vulkan Radeon de 64/32 bits ni lib32-mesa;
+NVIDIA tampoco estaba instalado. El plan nuevo detecta la GPU local y propone
+las bibliotecas adecuadas antes de confirmar. Mantiene los bloqueos de kernel,
+arranque y dependencias NVIDIA. No certifica aceleración ni juegos funcionando.
 
-Antes de la llamada, Diego verifica la publicación de **0.4.0 estable** del gestor
-y **1.2.2 Prueba** del contenido, sus assets y firmas descargados de GitHub.
-Después entrega el enlace habitual del plugin y el aviso de que ya están disponibles.
+Diego dispone de la entrega revisada en
+`artifacts/vulkan-provider-2026-09-30/delivery/`, firmas y fuentes públicas verificadas.
+Rafa no necesita esos directorios: selecciona v1.2.3 en OmaPacks y acepta actualizar
+el gestor. Si necesita una instalación nueva, usa el plugin público habitual.
 
 | Momento | Evidencia esperada | Si falla |
 | --- | --- | --- |
 | Antes | Versiones, origen, sin transacciones pendientes | Revisar/restaurar la transacción; conservar datos |
 | Compatibilidad | Sin mínimo de versión Omarchy; Hyprland ≥0.56.2 en Lua y x86_64 | Revisar el requisito técnico concreto; no saltarse validaciones |
-| Gestor | 0.4.0; mismo origen y contenido anterior | Revisar la oferta/diagnóstico del actualizador |
+| Gestor | 0.4.2; mismo origen y contenido anterior | Revisar la oferta/diagnóstico del actualizador |
 | Plan | Apps, retiros, AUR, permisos, archivos y conflictos visibles | Cancelar o resolver; no aprobar otra cosa |
-| Resultado | 1.2.2, sin pendientes; reloads comprobados | Diario parcial y recuperación revisada |
+| Resultado | 1.2.3, sin pendientes; reloads comprobados | Diario parcial y recuperación revisada |
 | Uso real | Apps abiertas manualmente; Spotify y juegos comprobados | Registrar aplicación, fase y error concreto |
 
 La validación previa solo acredita accesos de aplicaciones; no acredita juegos,

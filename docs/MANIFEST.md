@@ -169,7 +169,7 @@ completa falsa. No se eliminan paquetes ni datos Wine/personales automáticament
 
 ## Proveedores
 
-La corrección candidata 0.4.2 añade una política acotada para `steam` de Arch.
+El gestor publicado 0.4.2 añade una política acotada para `steam` de Arch.
 Si Steam necesita instalación/actualización y faltan `vulkan-driver` o
 `lib32-vulkan-driver`, consulta las GPU de clase PCI Display mediante los atributos
 de solo lectura `class`/`vendor` de sysfs. Para AMD/Intel añade al plan los paquetes
@@ -181,7 +181,7 @@ desconocida o solo NVIDIA y dependencias Vulkan ausentes se detiene con diagnós
 no elige un proveedor arbitrario ni automatiza NVIDIA. Esta comprobación de paquetes
 no demuestra aceleración, Vulkan funcional ni compatibilidad de una GPU antigua.
 Los packs con Steam que necesiten esta corrección deben usar `manager_min="0.4.2"`.
-Su publicación está pendiente; no se deben publicar antes que el gestor compatible.
+El gestor 0.4.2 estable y el pack 1.2.3 Prueba están publicados y verificados.
 
 - **Arch:** `provider="arch"`, `name`, `version` mínima. Se consulta instalado,
   repositorios habilitados y resolución transitiva. Se mantiene una versión más

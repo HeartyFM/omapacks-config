@@ -10,15 +10,17 @@ posterior al de Diego**. El sucesor completo `content/desktop-gaming-v1.2.2` eli
 `omarchy_min` y `omarchy_package_min`; no volver a deducir estos campos de la máquina
 de Diego. Mantener los requisitos técnicos reales de arquitectura, formato/versión
 de Hyprland, herramientas y dependencias. El esquema conserva los campos opcionales
-para leer releases anteriores, que no se reescriben. 1.2.2 requiere el gestor público
-0.4.0; no incluir los cambios Secure Boot 0.4.1/1.2.1, aplazados explícitamente.
+para leer releases anteriores, que no se reescriben. La base vigente 1.2.3 conserva
+esa política y exige gestor 0.4.2 por la corrección de proveedores Vulkan de Steam;
+ambos están publicados y verificados. No incluir los cambios Secure Boot 0.4.1/1.2.1,
+aplazados explícitamente.
 
 - Gestor/plugin y contenido son entregas distintas. El repo de contenido existente
   es **HeartyFM/omapacks-config**, público. Consulta sus GitHub Releases para ver
   qué versiones están publicadas; no reutilices tags ni reemplaces sus assets.
   El plugin se prepara con `tools/plugin_bundle.py`; no confundir los repositorios.
 - Rafa elige una **release completa**, no un módulo, código o catálogo. Cada release
-  debe servir para instalar desde cero. La base local `content/desktop-gaming-v1.2.2`
+  debe servir para instalar desde cero. La base vigente `content/desktop-gaming-v1.2.3`
   conserva escritorio/defaults/menú y añade gaming/Spotify/plugins activos. Omitir recursos
   administrados significa retirarlos: no publicar solo el delta.
   Las retiradas solicitadas por Diego se documentan y prueban expresamente; no
@@ -98,7 +100,7 @@ normativo. El futuro teclado XKB y temas no quedan habilitados por esta ampliaci
 
 ## Dependencias y futuros packs
 
-Corrección candidata 0.4.2/1.2.3 (aún sin publicar): con `steam` de Arch, usar
+Corrección publicada y verificada 0.4.2/1.2.3: con `steam` de Arch, usar
 `manager_min="0.4.2"` para la selección local de bibliotecas Vulkan/Mesa. No copiar
 `nvidia-utils` de Diego ni fijar Radeon para todos los destinatarios. El gestor
 consulta proveedores instalados y GPU del destino, muestra las dependencias en el

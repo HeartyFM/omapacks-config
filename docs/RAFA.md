@@ -1,12 +1,12 @@
 # Corrección Steam/Radeon · guía de Rafa
 
-Entrega local preparada: **gestor 0.4.2 / pack 1.2.3 Prueba**. Usar estos pasos
-cuando Diego confirme su publicación. El error anterior se produjo al preparar
+Disponibles y verificadas: **gestor 0.4.2 / pack 1.2.3 Prueba**. Descarga pública,
+firmas y hashes comprobados. El error anterior se produjo al preparar
 dependencias; la consulta aportada confirma que NVIDIA no estaba instalado.
 
 1. Abre **Update → Configuración compartida**, consulta las releases y selecciona
-   **v1.2.3 · Prueba**. Si todavía no aparece, la publicación sigue pendiente:
-   no fuerces el pack anterior ni instales NVIDIA para superar el mensaje.
+   **v1.2.3 · Prueba**. Si no aparece, vuelve a consultar la lista y revisa si
+   informa de caché o un fallo de red. No instales NVIDIA para superar el mensaje.
 2. Acepta **Actualizar gestor** a **0.4.2** cuando lo solicite. Conserva el origen,
    la clave y el registro. OmaPacks vuelve a abrir el contenido y calcula otro plan.
    Para una instalación nueva, usa **Setup → Plugin → Add Plugin** con

@@ -11,9 +11,9 @@ las bibliotecas y GPU del destinatario, completa Mesa/Vulkan para Radeon o Intel
 en un plan revisable y conserva el bloqueo de NVIDIA. No copia la GPU de Diego
 ni modifica kernel, arranque o Secure Boot. Mantiene todo el contenido de 1.2.2
 y no vuelve a imponer un mínimo de Omarchy igual al de Diego.
-[Guía para Rafa](docs/RAFA.md). Assets preparados localmente; comprobar en Releases
-que Diego haya publicado antes de seguir la guía. Pruebas locales y resolución
-real con pacman completadas; la aplicación de paquetes y el Lenovo quedan pendientes.
+[Guía para Rafa](docs/RAFA.md). Gestor 0.4.2 estable y pack 1.2.3 Prueba publicados y verificados mediante descarga
+anónima, firmas y hashes. 194 pruebas locales y resolución real con pacman
+completadas; la aplicación de paquetes y el Lenovo quedan pendientes.
 
 ## Base 1.2.2 · gestor mínimo 0.4.0 · Prueba
 
