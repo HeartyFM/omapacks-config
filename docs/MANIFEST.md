@@ -15,7 +15,7 @@ archivos declarados o fuentes externas fijadas y revisadas con constructor expl�
 El candidato 0.3.2 conserva el esquema 1 y la compatibilidad anterior. Añade solo
 `capture_shortcut` y descargas `omarchy-plugin`, que exigen `manager_min="0.3.2"`.
 No abre `input`, `unbind`, comandos ni destinos genéricos. El teclado compartido y
-la activación de temas siguen pendientes en [LIMITES.md](LIMITES.md).
+la activación de temas siguen pendientes en [FUTURO_PACK.md](FUTURO_PACK.md).
 Las releases anteriores conservan su `manager_min`; siempre se calcula un plan nuevo.
 
 ## Actualizar el gestor cuando lo requiere un pack (≥ 0.3.3)
@@ -269,3 +269,50 @@ y la shell pueden observar escrituras automáticamente: no se promete activació
 
 El grupo raíz `omapacks.shared` declara `parent = "root"` explícitamente.
 Omarchy infiere el padre de IDs con puntos; omitirlo dejaría el grupo bajo un padre inexistente.
+# Extensiones 0.4.0: base de Rafa
+
+El esquema sigue siendo 1; estos campos requieren `manager_min = "0.4.0"`.
+Referencia completa comprobable: `packs/desktop-gaming-v1.2.0/pack.toml`.
+
+- `compatibility.omarchy_package_min = "4.0.4-1.1"` compara versión y sufijo numérico
+  completo de `omarchy version`. Una versión ausente/inferior bloquea antes de los
+  proveedores. No actualiza Omarchy ni sustituye la validación Hyprland posterior.
+- `[[package_removals]]`: `module`, `name`, `reason`. Lista acotada a `cursor-bin`,
+  `foot`, `moonlight-qt`, `signal-desktop`. Consulta y muestra solo los instalados;
+  verifica `pacman -Rp` y ejecuta `pacman -R`, sin cascada ni datos personales.
+  Revalida antes de retirar. No se reinstalan al restaurar archivos o bajar el pack.
+- `[desktop_cleanup] hide = [...]`: quince IDs web acotados en `desktop_apps.py`.
+  Genera overrides `Hidden=true` bajo aplicaciones del usuario; respalda y restaura
+  el original al retirar, sin tocar accesos ajenos. No equivale a desinstalar apps.
+- `[spotify] module = "spotify"; profile = "omarchy-glass"`: perfil tipado, sin
+  comandos arbitrarios. Declara paquete nativo Spotify, descarga Spicetify tar y
+  Marketplace zip, y los tres recursos propios requeridos por `spotify.py`.
+  Prepara una generación privada bajo `.local/share/omapacks-data/spotify`, aplica
+  Spicetify con `--no-restart`, verifica hashes y parches binarios revisados, y crea
+  un lanzador manual. No abre/reinicia/mata Spotify ni edita `/opt/spotify` o cuentas.
+  Requiere paleta y fuente nativas de Omarchy. Un Spotify no reconocido bloquea;
+  no se aplican offsets por aproximación ni se baja el paquete. Conserva generaciones
+  anteriores para recuperación; su limpieza no es automática. La activación manual
+  vuelve a verificar recursos, cliente privado y compatibilidad.
+- `downloads.format = "zip"`: extracción limitada a archivos regulares, sin enlaces,
+  duplicados, traversal ni permisos especiales, dentro del namespace de contenido.
+- `checks.kind = "desktop-entry"`, `name`, `required`: busca el acceso nativo/Flatpak
+  según precedencia y ejecuta `desktop-file-validate`. **No prueba la aplicación**.
+
+La shell permite activar plugins externos fijados, widgets y clones de los paneles
+nativos declarados; combina membresías y conserva otros ajustes. Las mezclas de
+código nuevo/conservado de un plugin se bloquean. Lock Screen Explorer solo admite
+las opciones revisadas `design=dayline`, `boot=terminal` (animación del bloqueo).
+hyprmoncfg no recibe perfiles ni activa su daemon. Arch/AUR no sustituyen formatos:
+CurseForge usa `curseforge-appimage`, no un repaquetado automático de `.deb`.
+
+Flatpak actualmente exige que el commit fijado siga siendo el del remote, incluyendo
+al instalar de cero. Si cambia, requiere revisar otra receta; no promete recuperar
+cualquier commit histórico de Flathub. Los permisos/runtimes conservan la confirmación
+nativa. AUR muestra PKGBUILD/auxiliares y revisión; sus conflictos declarados con otros
+paquetes bloquean una sustitución no prevista. Las compilaciones no están aisladas
+durante una instalación real y nunca se ejecutan como root.
+
+El diario guarda una vez `approved-plan.json` con el plan completo y utiliza un
+resumen sin payloads de archivos para los eventos recuperables. Los diarios anteriores
+siguen siendo restaurables. La consulta `support-report` no expone esos payloads.

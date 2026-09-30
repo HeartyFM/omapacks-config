@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "omapacks.shared.browser-tools",
+  "name": "Herramientas del navegador",
+  "version": "1.0.0",
+  "author": "Diego",
+  "description": "Acceso a las descargas, extensiones y herramientas nativas de Firefox",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "Widget.qml"},
+  "barWidget": {"displayName": "Herramientas del navegador", "defaultSection": "right"}
+}

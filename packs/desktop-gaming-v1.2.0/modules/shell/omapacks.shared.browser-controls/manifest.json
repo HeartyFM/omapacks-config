@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "omapacks.shared.browser-controls",
+  "name": "Controles del navegador",
+  "version": "1.0.0",
+  "author": "Diego",
+  "description": "Controles del navegador para la topbar dinámica",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "Controles del navegador",
+    "defaultSection": "left"
+  }
+}

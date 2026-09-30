@@ -4,6 +4,29 @@ Releases completas de configuración para Diego y Rafa, independientes del gesto
 Para instalar OmaPacks, añade el [plugin](https://github.com/HeartyFM/omapacks-plugin)
 desde **Setup → Plugin → Add Plugin** de Omarchy. No pegues este repositorio allí.
 
+## Base 1.2.0 · gestor mínimo 0.4.0 · Prueba
+
+Fuentes completas en `packs/desktop-gaming-v1.2.0`: escritorio de cristal, blur,
+bordes rectos, animaciones verticales, cursor visible, Games/About, defaults,
+Spotify/Spicetify/Marketplace/OmarchyGlass y plugins habilitados de Diego.
+Añade Steam, Discord, Minecraft Launcher, Roblox mediante Sober y CurseForge.
+Las aplicaciones se abren manualmente, después de instalar.
+
+Requiere **Omarchy 4.0.4-1.1 o superior**, x86_64 y Hyprland Lua compatible.
+Incluye hyprmoncfg sin perfiles ni daemon; excluye AirPods, hardware, Limine y arranque.
+La retirada de Cursor, Foot, Moonlight y Signal aparece expresamente en el plan y
+no borra datos ni retira otras dependencias. OmaSettings deja de formar parte de esta
+base porque no está activo en Diego; se retira solo su copia administrada.
+
+[Guía para Rafa](docs/RAFA.md) · [Acompañamiento](docs/ACOMPANAR_RAFA.md) ·
+[Notas completas](packs/desktop-gaming-v1.2.0/NOTES.md).
+174 pruebas locales correctas; actualización del gestor desde 0.2.1/0.3.3 y recorrido
+completo del pack en aislamiento. Spicetify/Marketplace se prepararon realmente sin
+lanzar Spotify; sintaxis Hyprland y manifiestos de plugins verificados con herramientas
+nativas. Paquetes/privilegios/IPC simulados, sin prueba del Lenovo todavía.
+La receta Spotify exige hashes compatibles y los commits Flatpak fijados; un cambio
+del proveedor puede requerir otra receta. No se fuerza una instalación incompatible.
+
 ## Prueba completa 1.1.2 · gestor mínimo 0.3.3
 
 Fuentes en `packs/desktop-v1.1.2-test`. Conserva el escritorio completo 1.1.0

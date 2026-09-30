@@ -1,0 +1,1216 @@
+schema = 1
+id = "diego-rafa.shared"
+version = "1.2.0"
+manager_min = "0.4.0"
+
+[capture_shortcut]
+key = "SUPER + SHIFT + S"
+mode = "fullscreen"
+output = "save"
+
+[compatibility]
+architectures = ["x86_64"]
+omarchy_min = "4.0.4"
+omarchy_package_min = "4.0.4-1.1"
+hyprland_min = "0.56.2"
+hyprland_format = "lua"
+
+[recovery]
+epoch = "shared-1"
+limitations = "Respaldo y restauración de archivos administrados. Paquetes instalados o retirados no se revierten al restaurar archivos ni al elegir una release anterior. Se retiran solo Cursor, Foot, Moonlight y Signal si están instalados y la resolución no afecta otros paquetes; sus datos personales se conservan. Spotify utiliza una copia privada y conserva generaciones de preparación; no altera /opt/spotify ni perfiles de cuenta. No se abren apps al instalar. Recargas de Hyprland/shell al final; no hay atomicidad global. Plugins externos ejecutan código de usuario sin aislamiento. hyprmoncfg se entrega sin perfiles, sin iniciar ni habilitar su daemon. Sin cambios de hardware, GPU, energía, kernel, inicio o arranque."
+reboot = false
+
+[[modules]]
+id = "desktop"
+version = "1.2.0"
+description = "Cristal, bordes rectos, blur, cursor visible y animación vertical"
+
+[[modules]]
+id = "menu"
+version = "1.2.0"
+description = "Games/About y organización común del menú"
+
+[[modules]]
+id = "defaults"
+version = "1.2.0"
+description = "Aplicaciones predeterminadas compartidas"
+
+[[modules]]
+id = "bar"
+version = "1.2.0"
+description = "Barra, música e interfaces contextuales de Diego"
+
+[[modules]]
+id = "plugins"
+version = "1.2.0"
+description = "Solo plugins habilitados; AirPods excluido por Diego"
+
+[[modules]]
+id = "gaming"
+version = "1.2.0"
+description = "Steam, Discord, Minecraft Launcher, Roblox mediante Sober y CurseForge"
+
+[[modules]]
+id = "spotify"
+version = "1.2.0"
+description = "Spicetify, Marketplace, OmarchyGlass y adaptación a ventanas estrechas"
+
+[[modules]]
+id = "cleanup"
+version = "1.2.0"
+description = "Ocultar accesos web y retirada explícita revisable de cuatro programas"
+
+[[files]]
+module = "desktop"
+source = "config/appearance.lua"
+target = ".config/hypr/hyprland.lua"
+scope = "user"
+kind = "hypr_include"
+
+[[files]]
+module = "menu"
+source = "config/menu.json"
+target = ".config/omarchy/extensions/omarchy-menu.jsonc"
+scope = "user"
+kind = "omarchy_menu"
+
+[[files]]
+module = "defaults"
+source = "config/defaults.json"
+target = ".config/mimeapps.list"
+scope = "user"
+kind = "xdg_defaults"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/Bar.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/Bar.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/BarModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.bar/BarModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/BrowserBridge.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/BrowserBridge.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/ContextController.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/ContextController.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/ContextLayout.js"
+target = ".config/omarchy/plugins/omapacks.shared.bar/ContextLayout.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/ContextModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.bar/ContextModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/browser_bridge.py"
+target = ".config/omarchy/plugins/omapacks.shared.bar/browser_bridge.py"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/Dictation.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/Dictation.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/Dnd.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/Dnd.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/NightLight.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/NightLight.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/Reminder.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/Reminder.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/ScreenRecording.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/ScreenRecording.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/indicators/StayAwake.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/indicators/StayAwake.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/ActiveWindow.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/ActiveWindow.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/ActiveWindow.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/ActiveWindow.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Indicators.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Indicators.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Indicators.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Indicators.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/KeyboardLayout.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/KeyboardLayout.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/KeyboardLayout.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/KeyboardLayout.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/KeyboardLayoutModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/KeyboardLayoutModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Microphone.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Microphone.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Microphone.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Microphone.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Spacer.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Spacer.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Spacer.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Spacer.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/SystemUpdate.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/SystemUpdate.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/SystemUpdate.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/SystemUpdate.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Tray.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Tray.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Tray.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Tray.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/TrayModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/TrayModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Workspaces.manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Workspaces.manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.bar/widgets/Workspaces.qml"
+target = ".config/omarchy/plugins/omapacks.shared.bar/widgets/Workspaces.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.bar/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.bar/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "menu"
+source = "modules/shell/omapacks.shared.menu/BarWidget.qml"
+target = ".config/omarchy/plugins/omapacks.shared.menu/BarWidget.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "menu"
+source = "modules/shell/omapacks.shared.menu/Menu.qml"
+target = ".config/omarchy/plugins/omapacks.shared.menu/Menu.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "menu"
+source = "modules/shell/omapacks.shared.menu/MenuModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.menu/MenuModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "menu"
+source = "modules/shell/omapacks.shared.menu/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.menu/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.menu/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.menu/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/Indicators.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/Indicators.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/Dictation.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/Dictation.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/Dnd.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/Dnd.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/NightLight.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/NightLight.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/Reminder.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/Reminder.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/ScreenRecording.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/ScreenRecording.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/indicators/StayAwake.qml"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/indicators/StayAwake.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.indicators/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.indicators/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.indicators/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.song-title/Artists.js"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/Artists.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.song-title/SongTitle.qml"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/SongTitle.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.song-title/edge-fade.frag"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/edge-fade.frag"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.song-title/edge-fade.frag.qsb"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/edge-fade.frag.qsb"
+scope = "user"
+kind = "qt_shader"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.song-title/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.song-title/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.song-title/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-controls/Widget.qml"
+target = ".config/omarchy/plugins/omapacks.shared.browser-controls/Widget.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-controls/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.browser-controls/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.browser-controls/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.browser-controls/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-url/Widget.qml"
+target = ".config/omarchy/plugins/omapacks.shared.browser-url/Widget.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-url/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.browser-url/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.browser-url/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.browser-url/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-tools/Widget.qml"
+target = ".config/omarchy/plugins/omapacks.shared.browser-tools/Widget.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "modules/shell/omapacks.shared.browser-tools/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.browser-tools/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.browser-tools/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.browser-tools/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.clipboard/Clipboard.qml"
+target = ".config/omarchy/plugins/omapacks.shared.clipboard/Clipboard.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.clipboard/ClipboardHistory.js"
+target = ".config/omarchy/plugins/omapacks.shared.clipboard/ClipboardHistory.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.clipboard/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.clipboard/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.clipboard/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.clipboard/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.disk-speedtest/GlassSpeedTestOverlay.qml"
+target = ".config/omarchy/plugins/omapacks.shared.disk-speedtest/GlassSpeedTestOverlay.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.disk-speedtest/Panel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.disk-speedtest/Panel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.disk-speedtest/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.disk-speedtest/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.disk-speedtest/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.disk-speedtest/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.emojis/EmojiSearch.js"
+target = ".config/omarchy/plugins/omapacks.shared.emojis/EmojiSearch.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.emojis/Emojis.qml"
+target = ".config/omarchy/plugins/omapacks.shared.emojis/Emojis.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.emojis/emojis.json"
+target = ".config/omarchy/plugins/omapacks.shared.emojis/emojis.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.emojis/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.emojis/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.emojis/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.emojis/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/Model.js"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/Model.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/Panel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/Panel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/Model.js"
+target = ".config/omarchy/plugins/omapacks.shared.network/Model.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/Panel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.network/Panel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.network/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.network/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.osd/Osd.qml"
+target = ".config/omarchy/plugins/omapacks.shared.osd/Osd.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.osd/OsdModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.osd/OsdModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.osd/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.osd/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.osd/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.osd/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.reminders/ReminderFlow.qml"
+target = ".config/omarchy/plugins/omapacks.shared.reminders/ReminderFlow.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.reminders/ReminderFlowModel.js"
+target = ".config/omarchy/plugins/omapacks.shared.reminders/ReminderFlowModel.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.reminders/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.reminders/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.reminders/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.reminders/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.speedtest/GlassSpeedTestOverlay.qml"
+target = ".config/omarchy/plugins/omapacks.shared.speedtest/GlassSpeedTestOverlay.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.speedtest/Panel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.speedtest/Panel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.speedtest/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.speedtest/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.speedtest/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.speedtest/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.wifiqr/Model.js"
+target = ".config/omarchy/plugins/omapacks.shared.wifiqr/Model.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.wifiqr/Panel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.wifiqr/Panel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.wifiqr/manifest.json"
+target = ".config/omarchy/plugins/omapacks.shared.wifiqr/manifest.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.wifiqr/LICENSE"
+target = ".config/omarchy/plugins/omapacks.shared.wifiqr/LICENSE"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "bar"
+source = "config/shell.json"
+target = ".config/omarchy/shell.json"
+scope = "user"
+kind = "omarchy_shell"
+
+[[files]]
+module = "bar"
+source = "config/shell.toml"
+target = ".config/omarchy/shell.toml"
+scope = "user"
+kind = "omarchy_style"
+
+[[files]]
+module = "spotify"
+source = "config/spotify/base.css"
+target = ".local/share/omapacks-content/spotify/base.css"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "spotify"
+source = "config/spotify/omarchy-tiling.js"
+target = ".local/share/omapacks-content/spotify/omarchy-tiling.js"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "spotify"
+source = "config/spotify/native-transparency.json"
+target = ".local/share/omapacks-content/spotify/native-transparency.json"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/frosted/AccentToggleSwitch.qml"
+target = ".config/omarchy/plugins/omapacks.shared.network/frosted/AccentToggleSwitch.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/frosted/FrostedChoiceButton.qml"
+target = ".config/omarchy/plugins/omapacks.shared.network/frosted/FrostedChoiceButton.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.network/frosted/FrostedKeyboardPanel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.network/frosted/FrostedKeyboardPanel.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/frosted/AccentToggleSwitch.qml"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/frosted/AccentToggleSwitch.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/frosted/FrostedChoiceButton.qml"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/frosted/FrostedChoiceButton.qml"
+scope = "user"
+kind = "file"
+
+[[files]]
+module = "plugins"
+source = "modules/shell/omapacks.shared.monitor/frosted/FrostedKeyboardPanel.qml"
+target = ".config/omarchy/plugins/omapacks.shared.monitor/frosted/FrostedKeyboardPanel.qml"
+scope = "user"
+kind = "file"
+
+[[checks]]
+module = "desktop"
+kind = "hyprland"
+required = true
+
+[[checks]]
+module = "gaming"
+kind = "desktop-entry"
+name = "steam.desktop"
+required = true
+
+[[checks]]
+module = "gaming"
+kind = "desktop-entry"
+name = "com.discordapp.Discord.desktop"
+required = true
+
+[[checks]]
+module = "gaming"
+kind = "desktop-entry"
+name = "minecraft-launcher.desktop"
+required = true
+
+[[checks]]
+module = "gaming"
+kind = "desktop-entry"
+name = "org.vinegarhq.Sober.desktop"
+required = true
+
+[[checks]]
+module = "gaming"
+kind = "desktop-entry"
+name = "curseforge.desktop"
+required = true
+
+[[checks]]
+module = "spotify"
+kind = "desktop-entry"
+name = "spotify.desktop"
+required = true
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "base-devel"
+version = "1-2"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "dbus-glib"
+version = "0.114-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "evince"
+version = "1:48.4-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "ffmpeg"
+version = "2:9.0.1-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "firefox"
+version = "154.0-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "git"
+version = "2.55.0-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "gtk3"
+version = "1:3.24.52-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "imv"
+version = "5.0.1-2"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "kitty"
+version = "0.48.2-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "libxt"
+version = "1.3.1-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "mailcap"
+version = "2.1.54-2"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "mpv"
+version = "1:0.41.0-4"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "nautilus"
+version = "50.2.2-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "neovim"
+version = "0.12.4-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "nss"
+version = "3.127-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "systemd"
+version = "261.2-1"
+
+[[packages]]
+module = "defaults"
+provider = "arch"
+name = "ttf-liberation"
+version = "2.1.5-2"
+
+[[packages]]
+module = "defaults"
+provider = "aur"
+name = "zen-browser-bin"
+version = "1.22b-1"
+commit = "b33e39cfda74803ee846c8af6539a6f35757a2ba"
+build_dependencies = ["base-devel", "git", "gtk3", "libxt", "mailcap", "dbus-glib", "nss", "ttf-liberation", "systemd", "ffmpeg"]
+review = "Revisar PKGBUILD y auxiliares de este commit AUR antes de construir. La firma del pack no certifica Zen ni AUR. Release upstream fijada por URL y SHA en el PKGBUILD observado."
+
+[[packages]]
+module = "bar"
+provider = "arch"
+name = "python-gobject"
+version = "3.56.3-1"
+
+[[packages]]
+module = "bar"
+provider = "arch"
+name = "at-spi2-core"
+version = "2.60.6-1"
+
+[[packages]]
+module = "plugins"
+provider = "arch"
+name = "jq"
+version = "1.8.1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "steam"
+version = "1.0.0.87-3"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "minecraft-launcher"
+version = "1:2.1.3-3"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "flatpak"
+version = "1:1.18.2-1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "ostree"
+version = "2026.4-1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "desktop-file-utils"
+version = "0.28-1"
+
+[[packages]]
+module = "spotify"
+provider = "arch"
+name = "spotify"
+version = "1:1.2.96.518-3"
+
+[[packages]]
+module = "plugins"
+provider = "arch"
+name = "hyprland"
+version = "0.56.2-2"
+
+[[packages]]
+module = "plugins"
+provider = "arch"
+name = "xdg-terminal-exec"
+version = "0.14.3-1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "fuse2"
+version = "2.9.9-6"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "glibc"
+version = "2.44+r24+g16be1518495f-1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "hicolor-icon-theme"
+version = "0.18-1"
+
+[[packages]]
+module = "gaming"
+provider = "arch"
+name = "zlib"
+version = "1:1.3.2-3"
+
+[[packages]]
+module = "plugins"
+provider = "aur"
+name = "hyprmoncfg-bin"
+version = "1.21.0-1"
+commit = "6f31ca8919b2aad224195171b8db96f2cb85a5a6"
+build_dependencies = ["base-devel", "git", "hyprland", "xdg-terminal-exec"]
+review = "Revisar PKGBUILD y auxiliares fijados. Construcción como usuario; no se inicia la aplicación ni se habilitan servicios. La firma del pack no certifica al proveedor."
+
+[[packages]]
+module = "gaming"
+provider = "aur"
+name = "curseforge-appimage"
+version = "1.321.1_39714-1"
+commit = "8ae4d3752670a7000f0d2a801a834d6b50af71f3"
+build_dependencies = ["base-devel", "git", "fuse2", "glibc", "hicolor-icon-theme", "zlib"]
+review = "Revisar PKGBUILD y auxiliares fijados. Construcción como usuario; no se inicia la aplicación ni se habilitan servicios. La firma del pack no certifica al proveedor."
+
+[[packages]]
+module = "gaming"
+provider = "flatpak"
+name = "org.vinegarhq.Sober"
+remote = "flathub"
+scope = "user"
+version = "519698271f0d249119db199431a64b7e56b394d7a5c5d184f4b76974050e2372"
+permissions = "Red, audio y ventanas del usuario. El plan muestra la metadata nativa y permisos/runtimes antes de instalar; no se ejecuta la aplicación."
+
+[[packages]]
+module = "gaming"
+provider = "flatpak"
+name = "com.discordapp.Discord"
+remote = "flathub"
+scope = "user"
+version = "97ae45ed73f4aba6264effd8651aeddb2cbfe76eeec3bcd8ef7248d7f6b6acdf"
+permissions = "Red, audio y ventanas del usuario. El plan muestra la metadata nativa y permisos/runtimes antes de instalar; no se ejecuta la aplicación."
+
+[[downloads]]
+module = "plugins"
+id = "io.github.sirjul1337.lock-explorer"
+format = "omarchy-plugin"
+version = "1.6.1"
+architecture = "x86_64"
+url = "https://codeload.github.com/SirJul1337/omarchy-lock-explorer/tar.gz/62e855d724f49c0428b5670ebd8160672cc676e0"
+sha256 = "dfbbd3522ca5ad21d6c128e64d6d0cd36b7ca254a18bcba9334076dd684cd85f"
+size = 3761538
+target = ".config/omarchy/plugins/io.github.sirjul1337.lock-explorer"
+purpose = "Plugin habilitado en Diego; código fijado. Sin copiar datos, perfiles ni credenciales. hyprmoncfg no inicia su daemon."
+plugin_id = "io.github.sirjul1337.lock-explorer"
+revision = "62e855d724f49c0428b5670ebd8160672cc676e0"
+
+[[downloads]]
+module = "plugins"
+id = "crmne.hyprmoncfg"
+format = "omarchy-plugin"
+version = "2.5.0"
+architecture = "x86_64"
+url = "https://codeload.github.com/crmne/omarchy-hyprmoncfg/tar.gz/226493b2719d6645eab9d419052850dcb783af4b"
+sha256 = "20255ee0ba87b47817dab81776ff86008fc921ecb684c6ad80f34139f60075ef"
+size = 453123
+target = ".config/omarchy/plugins/crmne.hyprmoncfg"
+purpose = "Plugin habilitado en Diego; código fijado. Sin copiar datos, perfiles ni credenciales. hyprmoncfg no inicia su daemon."
+plugin_id = "crmne.hyprmoncfg"
+revision = "226493b2719d6645eab9d419052850dcb783af4b"
+
+[[downloads]]
+module = "spotify"
+id = "spicetify"
+format = "tar"
+version = "2.45.1"
+architecture = "x86_64"
+url = "https://github.com/spicetify/cli/releases/download/v2.45.1/spicetify-2.45.1-linux-amd64.tar.gz"
+sha256 = "994381833cf09e708ff961f8f26b5b944e61f7c66e7af93a4ae2889341ca6c32"
+size = 7428506
+target = ".local/share/omapacks-content/spicetify"
+purpose = "CLI oficial fijada para preparar Spotify con --no-restart"
+
+[[downloads]]
+module = "spotify"
+id = "marketplace"
+format = "zip"
+version = "1.0.11"
+architecture = "x86_64"
+url = "https://github.com/spicetify/marketplace/releases/download/v1.0.11/marketplace.zip"
+sha256 = "ea90ea292621c9d1643a71c5eb939e89f068f3558e0d2b789eb46f90a933122f"
+size = 415397
+target = ".local/share/omapacks-content/marketplace"
+purpose = "Marketplace oficial fijado; se añade a la copia privada de Spotify"
+
+[desktop_cleanup]
+hide = ["Basecamp.desktop", "ChatGPT.desktop", "Discord.desktop", "Figma.desktop", "Fizzy.desktop", "GitHub.desktop", "Google Contacts.desktop", "Google Maps.desktop", "Google Messages.desktop", "Google Photos.desktop", "HEY.desktop", "WhatsApp.desktop", "X.desktop", "YouTube.desktop", "Zoom.desktop"]
+
+[[package_removals]]
+module = "cleanup"
+name = "cursor-bin"
+reason = "Limpieza solicitada por Diego; retirada sin cascada, manteniendo datos personales."
+
+[[package_removals]]
+module = "cleanup"
+name = "foot"
+reason = "Limpieza solicitada por Diego; retirada sin cascada, manteniendo datos personales."
+
+[[package_removals]]
+module = "cleanup"
+name = "moonlight-qt"
+reason = "Limpieza solicitada por Diego; retirada sin cascada, manteniendo datos personales."
+
+[[package_removals]]
+module = "cleanup"
+name = "signal-desktop"
+reason = "Limpieza solicitada por Diego; retirada sin cascada, manteniendo datos personales."
+
+[[flatpak_remotes]]
+name = "flathub"
+scope = "user"
+url = "https://dl.flathub.org/repo/flathub.flatpakrepo"
+sha256 = "3371dd250e61d9e1633630073fefda153cd4426f72f4afa0c3373ae2e8fea03a"
+size = 4040
+
+[spotify]
+module = "spotify"
+profile = "omarchy-glass"

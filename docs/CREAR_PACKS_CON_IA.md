@@ -10,9 +10,11 @@ inspeccionar → implementar → probar → corregir. No declares resultados sin
   qué versiones están publicadas; no reutilices tags ni reemplaces sus assets.
   El plugin se prepara con `tools/plugin_bundle.py`; no confundir los repositorios.
 - Rafa elige una **release completa**, no un módulo, código o catálogo. Cada release
-  debe servir para instalar desde cero. El futuro pack de gaming será una release
-  que conserve escritorio/defaults/menú y añada sus módulos. Omitir recursos
+  debe servir para instalar desde cero. La base local `packs/desktop-gaming-v1.2.0`
+  conserva escritorio/defaults/menú y añade gaming/Spotify/plugins activos. Omitir recursos
   administrados significa retirarlos: no publicar solo el delta.
+  Las retiradas solicitadas por Diego se documentan y prueban expresamente; no
+  conservar un plugin antiguo a costa de contradecir «solo los activos».
 - Mantener `id = "diego-rafa.shared"`. Incrementar versión de contenido y módulos
   afectados; `manager_min` es independiente. Los tipos de menú y defaults necesitan
   gestor **0.2.0**. No copiar el ejecutable del gestor dentro del contenido.

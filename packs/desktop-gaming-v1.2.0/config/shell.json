@@ -1,0 +1,180 @@
+{
+  "bar": {
+    "centerAnchor": "omarchy.clock",
+    "dynamic": {
+      "contexts": [
+        {
+          "id": "browser",
+          "label": "Navegador",
+          "match": {
+            "appIds": [
+              "zen"
+            ]
+          }
+        }
+      ],
+      "enabled": true,
+      "layouts": {
+        "browser": {
+          "center": [
+            "omapacks.shared.browser-url",
+            "omapacks.shared.indicators"
+          ],
+          "centerAnchor": "omapacks.shared.browser-url",
+          "indicatorExpand": "right",
+          "left": [
+            "omapacks.shared.browser-controls"
+          ],
+          "right": [
+            "omapacks.shared.browser-tools",
+            "omarchy.clock"
+          ]
+        }
+      },
+      "version": 1
+    },
+    "id": "omapacks.shared.bar",
+    "layout": {
+      "center": [
+        {
+          "id": "omapacks.shared.indicators"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omapacks.shared.browser-url",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        }
+      ],
+      "left": [
+        {
+          "id": "omapacks.shared.menu"
+        },
+        {
+          "id": "omapacks.shared.browser-controls",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        },
+        {
+          "id": "omarchy.workspaces"
+        },
+        {
+          "id": "omapacks.shared.song-title"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omapacks.shared.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "omapacks.shared.monitor"
+        },
+        {
+          "id": "omarchy.power",
+          "showPercentage": true
+        },
+        {
+          "id": "omapacks.shared.browser-tools",
+          "when": {
+            "contexts": [
+              "browser"
+            ]
+          }
+        }
+      ]
+    },
+    "position": "top",
+    "transparent": true
+  },
+  "plugins": [
+    {
+      "id": "omapacks.shared.osd"
+    },
+    {
+      "id": "omapacks.shared.speedtest"
+    },
+    {
+      "id": "omapacks.shared.disk-speedtest"
+    },
+    {
+      "id": "omapacks.shared.wifiqr"
+    },
+    {
+      "id": "omapacks.shared.clipboard"
+    },
+    {
+      "id": "omapacks.shared.emojis"
+    },
+    {
+      "id": "omapacks.shared.reminders"
+    },
+    {
+      "id": "io.github.sirjul1337.lock-explorer",
+      "design": "dayline",
+      "boot": "terminal"
+    }
+  ],
+  "disabledPlugins": [
+    "omarchy.clipboard",
+    "omarchy.disk-speedtest",
+    "omarchy.emojis",
+    "omarchy.indicators",
+    "omarchy.lock",
+    "omarchy.menu",
+    "omarchy.monitor",
+    "omarchy.network",
+    "omarchy.osd",
+    "omarchy.reminders",
+    "omarchy.speedtest",
+    "omarchy.wifiqr"
+  ],
+  "cloneSourceRestores": [
+    "io.github.sirjul1337.lock-explorer",
+    "omapacks.shared.clipboard",
+    "omapacks.shared.disk-speedtest",
+    "omapacks.shared.emojis",
+    "omapacks.shared.indicators",
+    "omapacks.shared.menu",
+    "omapacks.shared.monitor",
+    "omapacks.shared.network",
+    "omapacks.shared.osd",
+    "omapacks.shared.reminders",
+    "omapacks.shared.speedtest",
+    "omapacks.shared.wifiqr"
+  ]
+}
