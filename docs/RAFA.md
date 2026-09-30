@@ -1,19 +1,21 @@
 # Rafa: actualizar OmaPacks y recibir la base compartida
 
-Disponibles y verificadas el 30-09-2026: **gestor 0.4.0 estable / configuración
-1.2.0 Prueba**. Publicación y descarga anónima con firma comprobadas. La prueba de
-aplicaciones y del Lenovo se hará contigo; no necesita modificar código.
+Esta guía corresponde al **gestor 0.4.0 / configuración 1.2.2 Prueba**.
+Selecciona 1.2.2 cuando aparezca publicada en OmaPacks. Esta revisión retira la
+comparación obligatoria con la versión de Omarchy de Diego. La release anterior
+1.2.0 conserva su requisito original. La prueba del Lenovo sigue pendiente.
 
 1. **Comprobar juntos el punto de partida.** Ejecuta `omarchy version` y
-   `~/.local/bin/omapacks --version`. El pack exige **Omarchy 4.0.4-1.1 o superior**,
-   x86_64 y Hyprland Lua compatible. Si Omarchy es anterior, actualízalo primero
-   desde su actualizador oficial y vuelve a comprobarlo. Si Diego te entrega
+   `~/.local/bin/omapacks --version`. La versión de Omarchy se registra para
+   diagnóstico: **1.2.2 no exige igualar o superar la versión de Diego**. Se mantienen
+   arquitectura x86_64, Hyprland ≥0.56.2 en Lua, herramientas nativas y dependencias.
+   Si falta un requisito técnico, revisa el motivo concreto antes de seguir. Si Diego te entrega
    `Comprobar-OmaPacks.py`, ejecuta `python3 Comprobar-OmaPacks.py`: muestra solo
    versiones, origen y operaciones pendientes. No modifica nada ni necesita el
    proyecto de desarrollo. Con pendientes, revisad la recuperación antes de seguir.
 
 2. **Actualizar el gestor.** Si ya tienes 0.3.3, abre
-   **Update → Configuración compartida**, selecciona **v1.2.0 · Prueba** y acepta
+   **Update → Configuración compartida**, selecciona **v1.2.2 · Prueba** y acepta
    **Actualizar gestor** cuando el reporte lo solicite. Descarga una entrega estable
    firmada de `HeartyFM/omapacks-plugin` y después vuelve a revisar el pack.
    Para una instalación antigua o nueva: **Setup → Plugin → Update** sobre OmaPacks,
@@ -26,7 +28,7 @@ aplicaciones y del Lenovo se hará contigo; no necesita modificar código.
    Verifica que `~/.local/bin/omapacks --version` muestre 0.4.0 y que conserve tu
    versión de contenido anterior. Este paso no instala el pack ni actualiza Omarchy.
 
-3. **Revisar e instalar v1.2.0.** Abre **Install/Update → Configuración compartida**.
+3. **Revisar e instalar v1.2.2.** Abre **Install/Update → Configuración compartida**.
    Revisa las novedades, paquetes, código AUR/plugins, cambios de preferencias y
    conflictos. La retirada de Cursor, Foot, Moonlight y Signal aparece expresamente
    si están instalados; conserva sus datos. Puedes volver sin instalar.
@@ -35,7 +37,7 @@ aplicaciones y del Lenovo se hará contigo; no necesita modificar código.
    preguntas nativas de permisos. No se abren los juegos ni Spotify al instalar.
 
 4. **Comprobar el resultado juntos.** Tras «Instalación completada correctamente»,
-   ejecuta `~/.local/bin/omapacks support-report`: contenido 1.2.0 y sin pendientes.
+   ejecuta `~/.local/bin/omapacks support-report`: contenido 1.2.2 y sin pendientes.
    Comprueba barra, Games/About, terminal, captura Super+Shift+S, apps predeterminadas,
    cursor y monitores. Luego abre tú Steam, Discord, Minecraft Launcher, Sober
    (Roblox), CurseForge y Spotify. Comprueba Marketplace, ventana estrecha y widget

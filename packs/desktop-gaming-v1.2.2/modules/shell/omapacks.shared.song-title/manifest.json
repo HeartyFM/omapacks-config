@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "omapacks.shared.song-title",
+  "name": "Song title",
+  "version": "1.0.0",
+  "author": "Diego",
+  "description": "Current song with fading overflow and space reserved for bar indicators",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "SongTitle.qml"},
+  "barWidget": {
+    "displayName": "Song title",
+    "description": "Current song, between workspaces and the central indicators",
+    "category": "Media",
+    "allowMultiple": false,
+    "defaultSection": "left"
+  }
+}

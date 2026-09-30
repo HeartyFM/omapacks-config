@@ -4,6 +4,16 @@ Releases completas de configuración para Diego y Rafa, independientes del gesto
 Para instalar OmaPacks, añade el [plugin](https://github.com/HeartyFM/omapacks-plugin)
 desde **Setup → Plugin → Add Plugin** de Omarchy. No pegues este repositorio allí.
 
+## Base 1.2.2 · gestor mínimo 0.4.0 · Prueba
+
+Conserva el contenido completo de 1.2.0 y elimina únicamente el requisito de que
+Omarchy sea igual o posterior a la versión de Diego. Se mantienen x86_64,
+Hyprland ≥0.56.2 en Lua, herramientas nativas, dependencias, firmas y verificaciones.
+Las versiones de Omarchy anteriores ya no se bloquean por su número; todavía deben
+cumplir esos requisitos técnicos. No incluye el trabajo Secure Boot aplazado.
+Fuentes: `packs/desktop-gaming-v1.2.2`. [Guía de Rafa](docs/RAFA.md).
+Los assets de la release 1.2.0 permanecen intactos con su política original.
+
 ## Base 1.2.0 · gestor mínimo 0.4.0 · Prueba
 
 Fuentes completas en `packs/desktop-gaming-v1.2.0`: escritorio de cristal, blur,

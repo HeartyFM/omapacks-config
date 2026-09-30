@@ -4,6 +4,13 @@ La implementación normativa es `omapacks/manifest.py`: rechaza campos desconoci
 tipos inválidos, destinos ajenos al namespace, rutas relativas ambiguas y operaciones
 excluidas. `examples/v1/pack.toml` y `examples/v2/pack.toml` son ejemplos ejecutables.
 
+Política de la base 1.2.2: se omiten `compatibility.omarchy_min` y
+`compatibility.omarchy_package_min` por petición de Diego. No se compara la versión
+de Omarchy de Rafa con la de Diego. Los campos siguen siendo opcionales del esquema
+y se respetan en releases antiguas firmadas. Se conservan `architectures`,
+`hyprland_min`, `hyprland_format` y comprobaciones de capacidades/dependencias;
+la ausencia del mínimo Omarchy no certifica compatibilidad universal.
+
 Una entrega completa tiene `pack.toml`, `config/` o `modules/` con recursos propios,
 y `NOTES.md`. El empaquetador solo admite archivos declarados y texto propio; no
 copia dependencias externas, archivos personales, enlaces ni todo `~/.config`.

@@ -5,12 +5,20 @@ inspeccionar → implementar → probar → corregir. No declares resultados sin
 
 ## Contrato del proyecto
 
+Cambio de política solicitado el 30-09-2026: **no exigir que Omarchy sea igual o
+posterior al de Diego**. El sucesor completo `packs/desktop-gaming-v1.2.2` elimina
+`omarchy_min` y `omarchy_package_min`; no volver a deducir estos campos de la máquina
+de Diego. Mantener los requisitos técnicos reales de arquitectura, formato/versión
+de Hyprland, herramientas y dependencias. El esquema conserva los campos opcionales
+para leer releases anteriores, que no se reescriben. 1.2.2 requiere el gestor público
+0.4.0; no incluir los cambios Secure Boot 0.4.1/1.2.1, aplazados explícitamente.
+
 - Gestor/plugin y contenido son entregas distintas. El repo de contenido existente
   es **HeartyFM/omapacks-config**, público. Consulta sus GitHub Releases para ver
   qué versiones están publicadas; no reutilices tags ni reemplaces sus assets.
   El plugin se prepara con `tools/plugin_bundle.py`; no confundir los repositorios.
 - Rafa elige una **release completa**, no un módulo, código o catálogo. Cada release
-  debe servir para instalar desde cero. La base local `packs/desktop-gaming-v1.2.0`
+  debe servir para instalar desde cero. La base local `packs/desktop-gaming-v1.2.2`
   conserva escritorio/defaults/menú y añade gaming/Spotify/plugins activos. Omitir recursos
   administrados significa retirarlos: no publicar solo el delta.
   Las retiradas solicitadas por Diego se documentan y prueban expresamente; no
